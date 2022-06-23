@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { SharedModule } from './../shared/shared.module';
@@ -22,6 +23,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     SharedModule,
     LoginRoutingModule,
     ReactiveFormsModule,
+    FontAwesomeModule
   ]
 })
 export class LoginModule { }

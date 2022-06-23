@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login-form',
@@ -12,6 +13,10 @@ export class LoginFormComponent implements OnInit {
     email: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required],
   });
+  faPen = faPen;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+  showPassword = false;
 
   constructor(
     private formBuilder: FormBuilder
