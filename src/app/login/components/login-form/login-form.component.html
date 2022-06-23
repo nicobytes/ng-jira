@@ -1,0 +1,14 @@
+<form [formGroup]="form" novalidate class="space-y-4">
+  <div>
+    <h1 class="text-center font-semibold">Log in to your account</h1>
+  </div>
+  <div>
+    <input formControlName="email" placeholder="Enter email" type="email" class="w-full rounded bg-gray-100 border-gray-300 border-2 padd" />
+  </div>
+  <div [hidden]="!form.controls.email.touched && form.controls.email.invalid">
+    <input formControlName="password" placeholder="Enter password" type="password" class="w-full rounded bg-gray-100 border-gray-300 border-2 padd" />
+  </div>
+  <div>
+    <app-button>Login</app-button>
+  </div>
+</form>
