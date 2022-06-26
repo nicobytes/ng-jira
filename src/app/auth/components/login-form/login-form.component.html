@@ -1,7 +1,5 @@
+<h1 class="text-center font-semibold py-2">Log in to your account</h1>
 <form [formGroup]="form" novalidate class="space-y-4" (ngSubmit)="doLogin()">
-  <div>
-    <h1 class="text-center font-semibold">Log in to your account</h1>
-  </div>
   <div>
     <div class="relative">
       <input
@@ -61,7 +59,7 @@
     <app-button
       [loading]="statusCheckEmail === 'loading'"
       *ngIf="!userExists"
-      (click)="checkEmail()"
+      (click)="isAvailable()"
       >Continue</app-button
     >
     <app-button

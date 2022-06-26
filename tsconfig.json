@@ -24,7 +24,13 @@
     ],
     "paths": {
       "@models/*": ["./src/app/models/*"],
+      "@shared/*": ["./src/app/shared/*"],
       "@auth/*": ["./src/app/auth/*"],
+      "@projects/*": ["./src/app/projects/*"],
+      "@app/*": ["./src/app/app/*"],
+      "@environments/*": ["./src/environments/*"],
+      "@guards/*": ["./src/app/guards/*"],
+      "@interceptors/*": ["./src/app/interceptors/*"],
     }
   },
   "angularCompilerOptions": {

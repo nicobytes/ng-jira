@@ -1,0 +1,111 @@
+<nav class="bg-white border-gray-200 px-6 shadow-md">
+  <div class="flex flex-wrap justify-between items-center">
+    <div class="flex items-center">
+      <a routerLink="/app">
+        <img
+          loading="lazy"
+          class="w-32 mr-8"
+          src="/assets/images/logo-jira-blue.png"
+          alt="logo"
+        />
+      </a>
+      <div class="flex items-center">
+        <ul class="flex items-center space-x-8 text-sm font-medium">
+          <li>
+            <a
+              routerLink="/app/overview"
+              routerLinkActive="text-blue-700 border-b-blue-700 border-b-2"
+              class="block py-4 px-4"
+              aria-current="page"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/app/projects"
+              routerLinkActive="text-blue-700 border-b-blue-700 border-b-2"
+              class="block py-4 px-4 text-gray-700"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <app-button>Create</app-button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <ng-container *ngIf="(user$ | async) as user">
+        <button
+          (click)="isOpen = !isOpen"
+          cdkOverlayOrigin
+          #trigger="cdkOverlayOrigin"
+          type="button"
+          [ngClass]="{
+            'ring-4 ring-blue-700': isOpen
+          }"
+          class="flex rounded-full"
+          aria-expanded="false"
+          type="button"
+          data-dropdown-toggle="dropdown"
+        >
+          <img
+            class="w-8 h-8 rounded-full"
+            [src]="user.avatar"
+            alt="user photo"
+          />
+        </button>
+
+        <!-- This template displays the overlay content and is connected to the button -->
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="trigger"
+          [cdkConnectedOverlayOpen]="isOpen"
+          (overlayOutsideClick)="isOpen = !isOpen"
+          (detach)="isOpen = false"
+          (backdropClick)="isOpen = false"
+        >
+          <div
+            class="my-4 text-base border border-gray-200 list-none bg-white rounded divide-y divide-gray-100 shadow-lg"
+          >
+            <div class="py-3 px-4">
+              <span class="block text-sm text-gray-900">{{ user.name }}</span>
+              <span class="block text-sm font-medium text-gray-500 truncate"
+                >{{ user.email }}</span
+              >
+            </div>
+            <ul class="py-1" aria-labelledby="dropdown">
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                  >Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                  >Earnings</a
+                >
+              </li>
+              <li>
+                <button
+                  (click)="logout()"
+                  class="block text-left w-full py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                  >Log out</button>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</nav>

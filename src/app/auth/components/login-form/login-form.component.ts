@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthService } from '@auth/services/auth.service';
@@ -26,21 +27,22 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
-  checkEmail() {
+  isAvailable() {
     if (this.form.controls.email.valid) {
       this.statusCheckEmail = 'loading';
       const email = this.form.controls.email.value;
-      this.authService.checkEmail(email)
+      this.authService.isAvailable(email)
       .subscribe({
         next: (rta) => {
           this.statusCheckEmail = 'success';
-          if (!rta.exists) {
+          if (!rta.isAvailable) {
             // TODO: redirect to register page
           }
           this.userExists = true;
@@ -63,8 +65,7 @@ export class LoginFormComponent implements OnInit {
       .subscribe({
         next: () => {
           this.statusLogin = 'success';
-          // TODO: redirect
-          alert('success');
+          this.router.navigate(['/app']);
         },
         error: () => {
           this.statusLogin = 'error';
